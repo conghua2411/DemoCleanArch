@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.MainActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.presentation.main.MainViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rlControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnGetData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.getAllPhoto()}"
+                android:text="loadPhoto" />
+
+            <Button
+                android:id="@+id/btnInsert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/btnGetData"
+                android:onClick="@{() -> viewModel.insertData()}"
+                android:text="insert" />
+
+            <Button
+                android:id="@+id/btnLoadDataApi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/btnInsert"
+                android:onClick="@{() -> viewModel.loadDataApi()}"
+                android:text="LoadApi" />
+
+            <Button
+                android:id="@+id/btnInserUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnGetData"
+                android:onClick="@{() -> viewModel.insertUserDb()}"
+                android:text="InsertUser" />
+
+            <Button
+                android:id="@+id/btnLoadUserDb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnGetData"
+                android:layout_toEndOf="@+id/btnInserUser"
+                android:onClick="@{() -> viewModel.getUsers()}"
+                android:text="Load" />
+
+            <Button
+                android:id="@+id/btnLoadUserRemote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnGetData"
+                android:layout_toEndOf="@+id/btnLoadUserDb"
+                android:onClick="@{() -> viewModel.loadUserRemote()}"
+                android:text="LoadApi" />
+
+            <Button
+                android:id="@+id/btnDeleteTbUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnGetData"
+                android:layout_toEndOf="@+id/btnLoadUserRemote"
+                android:onClick="@{() -> viewModel.deleteTbUser()}"
+                android:text="Delete" />
+
+            <Button
+                android:id="@+id/btnGotoDetail"
+                android:text="goto detail"
+                android:layout_below="@+id/btnLoadUserRemote"
+                android:onClick="@{() -> viewModel.gotoDetail()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlControl"
+            android:scrollbars="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtDbTest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="@{viewModel.textDemo}" />
+
+                <TextView
+                    android:id="@+id/txtDbTestUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:text="@{viewModel.textDemoUser}" />
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+</layout>

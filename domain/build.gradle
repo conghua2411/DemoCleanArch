@@ -1,0 +1,28 @@
+apply plugin: 'java-library'
+
+apply plugin: 'kotlin'
+
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation deps.kotlin.stdlib
+    implementation deps.core.ktx
+
+    implementation deps.rx.java
+    implementation deps.rx.android
+    implementation deps.rx.kotlin
+
+    implementation deps.support.gson
+
+    // dagger
+    implementation deps.dagger.dagger
+    implementation deps.dagger.support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.processor
+    compile project(path: ':data')
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

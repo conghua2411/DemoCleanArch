@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.target_sdk
+    defaultConfig {
+        applicationId "com.example.democleanarch"
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+    implementation deps.support.appcompat
+    implementation deps.core.ktx
+    implementation deps.support.constraintlayout
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.runner
+    androidTestImplementation deps.test.espresso.core
+
+    implementation deps.support.recyclerview
+
+    implementation deps.support.gson
+
+    // dagger
+    implementation deps.dagger.dagger
+    implementation deps.dagger.support
+    annotationProcessor deps.dagger.processor
+    kapt deps.dagger.compiler
+    kapt deps.dagger.processor
+
+    // rx
+    implementation deps.rx.java
+    implementation deps.rx.android
+    implementation deps.rx.kotlin
+
+    // room
+    implementation deps.room.runtime
+    annotationProcessor deps.room.compiler
+    kapt deps.room.compiler
+    implementation deps.support.gson
+
+    // paging
+    implementation deps.paging.runtime
+    implementation deps.paging.rxjava2
+    testImplementation deps.paging.runtime
+
+    // debug db
+    debugImplementation deps.debug.debug_db
+
+    implementation deps.lifecycle.extensions
+    kapt deps.lifecycle.compiler
+
+    implementation project(path: ':cache')
+    implementation project(path: ':data')
+    implementation project(path: ':presentation')
+    implementation project(path: ':domain')
+    implementation project(path: ':remote')
+
+}

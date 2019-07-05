@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.presentation.detail.DetailListViewModel" />
+    </data>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.listDetail.ListDetailActivity">
+
+        <Button
+            android:id="@+id/btnLoadUser"
+            android:text="loadUserDb"
+            android:onClick="@{() -> viewModel.getUsersFlow()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnInsertUser"
+            android:text="insertUser"
+            android:layout_toEndOf="@+id/btnLoadUser"
+            android:onClick="@{() -> viewModel.insertUser()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvShow"
+            android:layout_below="@+id/btnLoadUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </RelativeLayout>
+</layout>
